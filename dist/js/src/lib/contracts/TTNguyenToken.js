@@ -21,9 +21,6 @@ var __importStar = (this && this.__importStar) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.TTNguyenTokenWrapper = void 0;
 const TTNguyenTokenJSON = __importStar(require("../../../build/contracts/TTNguyenToken.json"));
-const DEFAULT_SEND_OPTIONS = {
-    gas: 6000000
-};
 class TTNguyenTokenWrapper {
     constructor(web3) {
         this.web3 = web3;
@@ -48,7 +45,6 @@ class TTNguyenTokenWrapper {
         const tx = await this.contract.methods
             .transfer(toAddress, this.web3.utils.toWei(this.web3.utils.toBN(amount)))
             .send({
-            ...DEFAULT_SEND_OPTIONS,
             from: fromAddress
         });
         return tx;
@@ -60,7 +56,6 @@ class TTNguyenTokenWrapper {
             arguments: []
         })
             .send({
-            ...DEFAULT_SEND_OPTIONS,
             from: fromAddress,
             to: '0x0000000000000000000000000000000000000000'
         });

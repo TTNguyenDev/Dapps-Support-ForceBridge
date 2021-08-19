@@ -2,10 +2,6 @@ import Web3 from 'web3';
 import * as TTNguyenTokenJSON from '../../../build/contracts/TTNguyenToken.json';
 import { TTNguyenToken } from '../../types/TTNguyenToken';
 
-const DEFAULT_SEND_OPTIONS = {
-    gas: 6000000
-};
-
 export class TTNguyenTokenWrapper {
     web3: Web3;
 
@@ -41,7 +37,6 @@ export class TTNguyenTokenWrapper {
         const tx = await this.contract.methods
             .transfer(toAddress, this.web3.utils.toWei(this.web3.utils.toBN(amount)))
             .send({
-                ...DEFAULT_SEND_OPTIONS,
                 from: fromAddress
             });
 
@@ -55,7 +50,6 @@ export class TTNguyenTokenWrapper {
                 arguments: []
             })
             .send({
-                ...DEFAULT_SEND_OPTIONS,
                 from: fromAddress,
                 to: '0x0000000000000000000000000000000000000000'
             } as any) as any);
